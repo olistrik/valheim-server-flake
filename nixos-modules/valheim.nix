@@ -61,6 +61,27 @@ in {
       description = lib.mdDoc "Whether to open ports in the firewall.";
     };
 
+    public = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = lib.mdDoc ''
+        Toggles visibility on the Steam server & community lists.
+
+        When not set, defaults to true (visible).
+        Set to false to make the server private.
+      '';
+    };
+
+    preset = lib.mkOption {
+      type = with lib.types; nullOr (enum ["easy" "hard" "hardcore" "casual" "hammer" "immersive"]);
+      default = null;
+      example = "hardcore";
+      description = lib.mdDoc ''
+        The preset world modifier, valid options are
+        "easy", "hard", "hardcore", "casual", "hammer" and "immersive".
+      '';
+    };
+
     password = lib.mkOption {
       type = lib.types.str;
       default = "";
@@ -277,8 +298,10 @@ in {
               ++ [
                 "-port \"${builtins.toString cfg.port}\""
                 "-password \"${cfg.password}\""
+                "-public ${if cfg.public then "1" else "0"}"
               ]
-              ++ (lib.lists.optional cfg.crossplay "-crossplay"));
+              ++ (lib.lists.optional cfg.crossplay "-crossplay")
+              ++ (lib.lists.optional (cfg.preset != null) "-preset \"${cfg.preset}\""));
         };
       };
     };
