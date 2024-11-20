@@ -2,16 +2,16 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1686513595,
-        "narHash": "sha256-H3JNqj7TEiMx5rd8lRiONvgFZvmf3kmwHI2umDdqgFY=",
-        "owner": "nixos",
+        "lastModified": 1732116157,
+        "narHash": "sha256-XuUgZsbduu0ZTjuOw2dNWraJA7YKPGD3RKi71XRd2lk=",
+        "owner": "hamburger1984",
         "repo": "nixpkgs",
-        "rev": "bb8b5735d6f7e06b9ddd27de115b0600c1ffbdb4",
+        "rev": "5ec79a767f5582432f78b1fe00138e9b1b14a0d0",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.05",
+        "owner": "hamburger1984",
+        "ref": "master",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -29,15 +29,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1714795926,
-        "narHash": "sha256-PkgC9jqoN6cJ8XYzTA2PlrWs7aPJkM3BGiTxNqax0cA=",
-        "owner": "nix-community",
+        "lastModified": 1732116741,
+        "narHash": "sha256-yJlWOI6/+zipxFmHTuRSsOJo6Q20OXQbvVA5RQGPI+g=",
+        "owner": "hamburger1984",
         "repo": "steam-fetcher",
-        "rev": "12f66eafb7862d91b3e30c14035f96a21941bd9c",
+        "rev": "bfdbef6df91b4cc160e6f034ec4a6122a5b5fbcf",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "hamburger1984",
+        "ref": "main",
         "repo": "steam-fetcher",
         "type": "github"
       }

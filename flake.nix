@@ -2,9 +2,9 @@
   description = "NixOS module for the Valheim dedicated server";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:hamburger1984/nixpkgs/master";
     steam-fetcher = {
-      url = "github:nix-community/steam-fetcher";
+      url = "github:hamburger1984/steam-fetcher/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
