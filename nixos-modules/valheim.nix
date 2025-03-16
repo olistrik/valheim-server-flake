@@ -350,11 +350,11 @@ in {
         message = "The world name must not be empty.";
       }
       {
-        assertion = (cfg.password != null && cfg.password != "") != (builtins.isPath cfg.passwordEnvFile);
+        assertion = (cfg.password != null && cfg.password != "") != (cfg.passwordEnvFile != null);
         message = "Please provide either password or passwordEnvFile but not both";
       }
       {
-        assertion = ! builtins.isPath cfg.passwordEnvFile || builtins.pathExists cfg.passwordEnvFile;
+        assertion = cfg.passwordEnvFile == null || builtins.pathExists cfg.passwordEnvFile;
         message = "Environment file for the password was provided but does not exist.";
       }
     ];
