@@ -207,7 +207,7 @@ in {
       installDir = "${stateDir}/valheim-server-modded";
       # If passwordEnvFile is provided then use environment variable, else insert password in unit file directly.
       # Assertions ensure that other cases are not possible.
-      serverPassword = if builtins.isPath cfg.passwordEnvFile then "\"\${VH_SERVER_PASSWORD}\"" else cfg.password;
+      serverPassword = if cfg.passwordEnvFile != null then "\"\${VH_SERVER_PASSWORD}\"" else cfg.password;
     in {
       valheim = {
         description = "Valheim dedicated server";
@@ -308,7 +308,7 @@ in {
         in {
           Type = "exec";
           User = "valheim";
-          EnvironmentFile = lib.mkIf (builtins.isPath cfg.passwordEnvFile) cfg.passwordEnvFile;
+          EnvironmentFile = lib.mkIf (cfg.passwordEnvFile != null) cfg.passwordEnvFile;
           ExecStart = let
             valheimServerPkg =
               if (cfg.bepinexMods != [])
