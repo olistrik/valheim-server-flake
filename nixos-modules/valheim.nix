@@ -207,7 +207,7 @@ in {
       installDir = "${stateDir}/valheim-server-modded";
       # If passwordEnvFile is provided then use environment variable, else insert password in unit file directly.
       # Assertions ensure that other cases are not possible.
-      serverPassword = if cfg.passwordEnvFile != null then "\"\${VH_SERVER_PASSWORD}\"" else cfg.password;
+      serverPassword = if builtins.isPath cfg.passwordEnvFile then "\"\${VH_SERVER_PASSWORD}\"" else cfg.password;
     in {
       valheim = {
         description = "Valheim dedicated server";
@@ -308,7 +308,7 @@ in {
         in {
           Type = "exec";
           User = "valheim";
-          EnvironmentFile = lib.mkIf (cfg.passwordEnvFile != null) cfg.passwordEnvFile;
+          EnvironmentFile = lib.mkIf (builtins.isPath cfg.passwordEnvFile) cfg.passwordEnvFile;
           ExecStart = let
             valheimServerPkg =
               if (cfg.bepinexMods != [])
@@ -349,18 +349,18 @@ in {
         assertion = cfg.worldName != "";
         message = "The world name must not be empty.";
       }
-      # {
-      #   assertion = cfg.password != null && cfg.passwordEnvFile != null;
-      #   message = "Please provide only one of password or passwordEnvFile";
-      # }
       {
-        assertion = cfg.passwordEnvFile != null && ! builtins.pathExists cfg.passwordEnvFile;
+        assertion = cfg.password != "" && builtins.isPath cfg.passwordEnvFile;
+        message = "Please provide only one of password or passwordEnvFile";
+      }
+      {
+        assertion = builtins.isPath cfg.passwordEnvFile && ! builtins.pathExists cfg.passwordEnvFile;
         message = "Environment file for the password was provided but does not exist.";
       }
-      # {
-      #   assertion = cfg.password == null && cfg.passwordEnvFile == null;
-      #   message = "Password must be provided at least one way.";
-      # }
+      {
+        assertion = cfg.password == "" && ! builtins.isPath cfg.passwordEnvFile;
+        message = "Password must be provided at least one way.";
+      }
     ];
   };
 }
