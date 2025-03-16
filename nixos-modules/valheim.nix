@@ -350,17 +350,17 @@ in {
         message = "The world name must not be empty.";
       }
       {
-        assertion = cfg.password != "" && builtins.isPath cfg.passwordEnvFile;
-        message = "Please provide only one of password or passwordEnvFile";
+        assertion = (cfg.password != "") != (builtins.isPath cfg.passwordEnvFile);
+        message = "Please provide exactly one of password or passwordEnvFile";
       }
       {
-        assertion = builtins.isPath cfg.passwordEnvFile && ! builtins.pathExists cfg.passwordEnvFile;
+        assertion = ! builtins.isPath cfg.passwordEnvFile || builtins.pathExists cfg.passwordEnvFile;
         message = "Environment file for the password was provided but does not exist.";
       }
-      {
-        assertion = cfg.password == "" && ! builtins.isPath cfg.passwordEnvFile;
-        message = "Password must be provided at least one way.";
-      }
+      #{
+      #  assertion = cfg.password == "" && ! builtins.isPath cfg.passwordEnvFile;
+      #  message = "Password must be provided at least one way.";
+      #}
     ];
   };
 }
