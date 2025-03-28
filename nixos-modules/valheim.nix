@@ -289,13 +289,13 @@ in
               ${createListFile "permittedlist.txt" cfg.permittedList}
               ${createListFile "bannedlist.txt" cfg.bannedList}
             ''
-            + lib.optionalString (cfg.adminListFile) ''
+            + lib.optionalString (cfg.adminListFile != null) ''
               ${concatListFile "adminlist.txt" cfg.adminListFile}
             ''
-            + lib.optionalString (cfg.permittedListFile) ''
+            + lib.optionalString (cfg.permittedListFile != null) ''
               ${concatListFile "permittedList.txt" cfg.permittedListFile}
             ''
-            + lib.optionalString (cfg.bannedListFile) ''
+            + lib.optionalString (cfg.bannedListFile != null) ''
               ${concatListFile "bannedlist.txt" cfg.bannedListFile}
             ''
             + lib.optionalString (cfg.bepinexMods != [ ]) ''
