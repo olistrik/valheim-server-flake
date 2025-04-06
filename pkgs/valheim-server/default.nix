@@ -1,7 +1,7 @@
-{
-  lib,
-  stdenv,
-  fetchSteam,
+{ lib
+, stdenv
+, fetchSteam
+,
 }:
 stdenv.mkDerivation (finalAttrs: {
   name = "valheim-server";
@@ -10,8 +10,8 @@ stdenv.mkDerivation (finalAttrs: {
     inherit (finalAttrs) name;
     appId = "896660";
     depotId = "896661";
-    manifestId = "7407372182916713721";
-    hash = "sha256-guGw5qJMctatDN5xXK7/nUcBiGAEOFbGvUmartQZgv0=";
+    manifestId = "18007466826975597";
+    hash = "sha256-8UdoLzKiu8CEztqwTHGP5M3RdrrVUTmAwN6Cqt9R+v8=";
   };
 
   # Skip phases that don't apply to prebuilt binaries.
@@ -39,9 +39,9 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Valheim dedicated server";
     homepage = "https://steamdb.info/app/896660/";
     changelog = "https://store.steampowered.com/news/app/892970?updates=true";
-    sourceProvenance = with sourceTypes; [binaryBytecode binaryNativeCode];
+    sourceProvenance = with sourceTypes; [ binaryBytecode binaryNativeCode ];
     license = licenses.unfree;
-    maintainers = with maintainers; [aidalgol];
-    platforms = ["x86_64-linux"];
+    maintainers = with maintainers; [ aidalgol ];
+    platforms = [ "x86_64-linux" ];
   };
 })
